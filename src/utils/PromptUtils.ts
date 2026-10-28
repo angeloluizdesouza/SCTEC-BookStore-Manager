@@ -1,22 +1,25 @@
-import * as readline from 'node:readline/promises';
-import { stdin as input, stdout as output } from 'node:process';
+import * as readline from 'node:readline';
+import { stdin as input } from 'node:process';
 import { ConsoleUtils } from './ConsoleUtils';
 import { DateUtils } from './DateUtils';
 
 /**
  * Utilitário assíncrono para captura de entradas do usuário no terminal.
+ * Suporta tanto sessões interativas em TTY quanto redirecionamento de streams (pipes/testes).
  */
 export class PromptUtils {
   private static rl: readline.Interface | null = null;
+  private static iterator: AsyncIterator<string> | null = null;
 
   /**
-   * Obtém a instância única de readline.Interface.
+   * Obtém o iterador assíncrono único para leitura linha a linha do terminal.
    */
-  private static getInterface(): readline.Interface {
+  private static getIterator(): AsyncIterator<string> {
     if (!this.rl) {
-      this.rl = readline.createInterface({ input, output });
+      this.rl = readline.createInterface({ input, terminal: false });
+      this.iterator = this.rl[Symbol.asyncIterator]();
     }
-    return this.rl;
+    return this.iterator!;
   }
 
   /**
@@ -26,6 +29,7 @@ export class PromptUtils {
     if (this.rl) {
       this.rl.close();
       this.rl = null;
+      this.iterator = null;
     }
   }
 
@@ -33,13 +37,17 @@ export class PromptUtils {
    * Solicita um texto ao usuário. Permite valor padrão.
    */
   public static async askText(promptText: string, defaultValue?: string): Promise<string> {
-    const rl = this.getInterface();
     const promptDisplay = defaultValue !== undefined && defaultValue !== ''
       ? `${ConsoleUtils.BOLD}${promptText}${ConsoleUtils.RESET} ${ConsoleUtils.GRAY}[Padrão: ${defaultValue}]${ConsoleUtils.RESET}: `
       : `${ConsoleUtils.BOLD}${promptText}${ConsoleUtils.RESET}: `;
 
-    const answer = await rl.question(promptDisplay);
-    const trimmed = answer.trim();
+    process.stdout.write(promptDisplay);
+    const iterator = this.getIterator();
+    const result = await iterator.next();
+    if (result.done) {
+      return defaultValue ?? '';
+    }
+    const trimmed = result.value.trim();
     if (trimmed === '' && defaultValue !== undefined) {
       return defaultValue;
     }
@@ -91,8 +99,8 @@ export class PromptUtils {
    * Pausa a execução e aguarda o usuário pressionar Enter.
    */
   public static async pause(message: string = 'Pressione Enter para continuar...'): Promise<void> {
-    const rl = this.getInterface();
     console.log(`\n${ConsoleUtils.GRAY}${message}${ConsoleUtils.RESET}`);
-    await rl.question('');
+    const iterator = this.getIterator();
+    await iterator.next();
   }
 }
