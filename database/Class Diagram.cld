@@ -1,0 +1,41 @@
+classDiagram
+    class Author {
+        +int authorId
+        +String name
+        +String nationality
+        +Date birthDate
+        +addBook(Book book) void
+        +getBooks() List~Book~
+    }
+    class Book {
+        +int bookId
+        +String title
+        +int authorId
+        +String genre
+        +int publicationYear
+        +isAvailable() bool
+        +loanOut() void
+        +returnBook() void
+    }
+    class Client {
+        +int clientId
+        +String name
+        +String email
+        +String phone
+        +Date birthDate
+        +requestLoan(Book book) Loan
+        +returnLoan(Loan loan) void
+    }
+    class Loan {
+        +int loanId
+        +int bookId
+        +int clientId
+        +Date loanDate
+        +Date returnDate
+        +bool isReturned
+        +markReturned() void
+    }
+
+    Author "1" --> "*" Book : writes
+    Book "1" --> "*" Loan : containedIn
+    Client "1" --> "*" Loan : borrows
