@@ -4,9 +4,10 @@
   "description": "Sistema de gerenciamento de livraria via terminal (Desktop Standalone) em TypeScript com PostgreSQL",
   "main": "dist/main.js",
   "scripts": {
-    "start": "ts-node src/main.ts",
-    "dev": "ts-node src/main.ts",
+    "start": "tsx src/main.ts",
+    "dev": "tsx src/main.ts",
     "build": "tsc",
+    "prod": "node dist/main.js",
     "lint": "tsc --noEmit"
   },
   "keywords": [
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@types/node": "^22.10.1",
     "ts-node": "^10.9.2",
+    "tsx": "^4.23.15",
     "typescript": "^5.7.2"
   }
 }

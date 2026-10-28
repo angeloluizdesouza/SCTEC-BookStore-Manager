@@ -89,8 +89,8 @@ npm install
 
 ## 6. Execução da Aplicação
 
-### Modo Desenvolvimento (via ts-node)
-Para iniciar a aplicação diretamente com o TypeScript:
+### Modo Desenvolvimento (TypeScript direto via tsx)
+Para iniciar a aplicação diretamente:
 
 ```bash
 npm run dev
