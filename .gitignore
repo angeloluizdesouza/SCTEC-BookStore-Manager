@@ -1,0 +1,16 @@
+# Dependências
+node_modules/
+
+# Build
+dist/
+
+# Logs e arquivos de sistema
+*.log
+cmd_debug.log
+powershell.cmd
+.DS_Store
+Thumbs.db
+
+# Configurações de IDEs locais
+.vscode/
+.idea/

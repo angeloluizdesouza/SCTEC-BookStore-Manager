@@ -1,0 +1,28 @@
+{
+  "name": "bookstore-manager-cli",
+  "version": "1.0.0",
+  "description": "Sistema de gerenciamento de livraria via terminal (Desktop Standalone) em TypeScript com PostgreSQL",
+  "main": "dist/main.js",
+  "scripts": {
+    "start": "ts-node src/main.ts",
+    "dev": "ts-node src/main.ts",
+    "build": "tsc",
+    "lint": "tsc --noEmit"
+  },
+  "keywords": [
+    "bookstore",
+    "typescript",
+    "nodejs",
+    "cli",
+    "postgresql",
+    "clean-code",
+    "solid"
+  ],
+  "author": "Angelo Luiz de Souza",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  }
+}
