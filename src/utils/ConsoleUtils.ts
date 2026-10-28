@@ -19,10 +19,14 @@ export class ConsoleUtils {
 
   /**
    * Limpa a tela do console de forma portátil.
+   * Quando executado em terminal não-TTY (como pipes ou scripts), apenas emite linha divisória.
    */
   public static clear(): void {
-    process.stdout.write('\x1Bc');
+    if (process.stdout.isTTY) {
+      process.stdout.write('\x1Bc');
+    }
   }
+
 
   /**
    * Exibe o cabeçalho estilizado do sistema BookStore Manager.
