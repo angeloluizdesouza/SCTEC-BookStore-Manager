@@ -150,7 +150,7 @@ ORDER BY publication_year DESC;
 -- Listar clientes cadastrados
 SELECT client_id, name, email, phone 
 FROM clients 
-ORDER BY name ASC;
+ORDER BY client_id ASC;
 
 
 -- ============================================================================

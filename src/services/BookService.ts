@@ -12,7 +12,7 @@ export class BookService {
     private readonly bookRepo: IBookRepository,
     private readonly authorRepo: IAuthorRepository,
     private readonly loanRepo: ILoanRepository
-  ) {}
+  ) { }
 
   public async createBook(
     title: string,

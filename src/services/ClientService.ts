@@ -52,7 +52,7 @@ export class ClientService {
 
   public async getAllClients(): Promise<Client[]> {
     const list = await this.clientRepo.findAll();
-    return list.sort((a, b) => a.name.localeCompare(b.name));
+    return list.sort((a, b) => a.clientId - b.clientId);
   }
 
   public async getClientById(id: number): Promise<Client> {
