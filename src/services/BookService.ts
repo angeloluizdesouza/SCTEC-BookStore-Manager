@@ -60,7 +60,7 @@ export class BookService {
 
   public async getAllBooks(): Promise<Book[]> {
     const list = await this.bookRepo.findAll();
-    return list.sort((a, b) => a.title.localeCompare(b.title));
+    return list.sort((a, b) => a.bookId - b.bookId);
   }
 
   public async getBookById(id: number): Promise<Book> {

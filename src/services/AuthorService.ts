@@ -33,7 +33,7 @@ export class AuthorService {
 
   public async getAllAuthors(): Promise<Author[]> {
     const list = await this.authorRepo.findAll();
-    return list.sort((a, b) => a.name.localeCompare(b.name));
+    return list.sort((a, b) => a.authorId - b.authorId);
   }
 
   public async getAuthorById(id: number): Promise<Author> {

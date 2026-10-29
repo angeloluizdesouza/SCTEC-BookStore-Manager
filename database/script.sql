@@ -139,7 +139,7 @@ DELETE FROM authors WHERE name = 'Autor Temporário';
 -- ============================================================================
 
 -- Listar todos os autores
-SELECT * FROM authors ORDER BY name ASC;
+SELECT * FROM authors ORDER BY author_id ASC;
 
 -- Listar todos os livros com ano superior a 1950
 SELECT book_id, title, genre, publication_year, available_copies 
@@ -168,7 +168,7 @@ SELECT
     a.nationality AS nacionalidade
 FROM books b
 INNER JOIN authors a ON b.author_id = a.author_id
-ORDER BY b.title ASC;
+ORDER BY b.book_id ASC;
 
 -- Consulta 2: Histórico completo de empréstimos com dados de livro, cliente e status (INNER JOIN)
 SELECT 
