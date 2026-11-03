@@ -461,7 +461,7 @@ O projeto adota o fluxo de ramificação **GitFlow**, com commits semânticos no
 
 ## 15. Link do Kanban
 
-- **Quadro de Tarefas (Kanban / GitHub Projects):** [https://github.com/users/angeloluizdesouza/projects](https://github.com/users/angeloluizdesouza/projects) (ou quadro de acompanhamento da turma).
+- **Quadro de Tarefas (Kanban / GitHub Projects):** [https://github.com/users/angeloluizdesouza/projects](https://github.com/users/angeloluizdesouza/projects) (ou quadro de acompanhamento).
 
 ---
 
